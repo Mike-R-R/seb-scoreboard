@@ -1,15 +1,6 @@
 
 #include "ScoreboardController.h"
-
 #include <iostream>
-
-#define RED 1
-#define YELLOW 2
-#define GREEN 3
-#define BROWN 4
-#define BLUE 5
-#define PINK 6
-#define BLACK 7
 
 
 /**
@@ -18,7 +9,7 @@
 ScoreboardController::ScoreboardController(rgb_matrix::Canvas *m) : rgb_matrix::ThreadedCanvasManipulator(m) 
 {
 	game_running = true;
-	theGame = new SnookerGame();
+	gameState = 0;
 }
 
 
@@ -44,77 +35,112 @@ void ScoreboardController::Run()
 	keypad(stdscr, TRUE);
 	nodelay(stdscr, TRUE);
 	
-	// Draw the static members of the scoreboard
-	setup_scoreboard();
-	
 	while(game_running){
 		if(check_for_input(&key)) {
-			// Handle input of keys we care about
-			switch(int(key)){
-				case 7:
-					// Handle backspace key press
-					theGame->revert_game_state();
-					break;
-				case 10:
-					// Handle enter key press
-					theGame->end_break();
-					break;
-				case 42:
-					// Handle '*' key press
-					theGame->end_frame();
-					break;
-				case 43:
-					// Handle '+' key press
-					theGame->free_ball();
-					break;
-				case 45:
-					// Handle '-' key press
-					theGame->lost_red();
-					break;
-				case 47:
-					// Handle '/' key press
-					theGame->revert_game_state();
-					break;
-				case 48:
-					// Handle '0' key press
-					theGame->foul_occurred();
-					break;
-				case 49:
-					// Handle '1' key press
-					theGame->receive_point_input(RED);
-					break;
-				case 50:
-					// Handle '2' key press
-					theGame->receive_point_input(YELLOW);
-					break;
-				case 51:
-					// Handle '3' key press
-					theGame->receive_point_input(GREEN);
-					break;
-				case 52:
-					// Handle '4' key press
-					theGame->receive_point_input(BROWN);
-					break;
-				case 53:
-					// Handle '5' key press
-					theGame->receive_point_input(BLUE);
-					break;
-				case 54:
-					// Handle '6' key press
-					theGame->receive_point_input(PINK);
-					break;
-				case 55:
-					// Handle '7' key press
-					theGame->receive_point_input(BLACK);
-					break;
-				default:
-					std::cout << key << std::endl;
-					std::cout << int(key) << "\n" << std::endl;
-					break;
-			}
-			update_board();
+			snooker_input(int(key));
 		}
+		update_board();
 	}
+}
+
+
+/**
+ * Handle user input in the game selection state.
+ */
+void ScoreboardController::game_selection_input(int key)
+{
+	// Handle input of keys we care about in this state
+	switch(key){
+		case 49:
+			// Handle '1' key press
+			gameState = 1;
+			snookerGame = new SnookerGame();
+			break;
+		case 50:
+			// Handle '2' key press
+			gameState = 2;
+			break;
+	}
+}
+
+
+/**
+ * Handle user input in the Snooker game state.
+ */
+void ScoreboardController::snooker_input(int key)
+{
+	// Handle input of keys we care about in this state
+	switch(key){
+		case 7:
+			// Handle backspace key press
+			snookerGame->revert_game_state();
+			break;
+		case 10:
+			// Handle enter key press
+			snookerGame->end_break();
+			break;
+		case 42:
+			// Handle '*' key press
+			snookerGame->end_frame();
+			break;
+		case 43:
+			// Handle '+' key press
+			snookerGame->free_ball();
+			break;
+		case 45:
+			// Handle '-' key press
+			snookerGame->lost_red();
+			break;
+		case 47:
+			// Handle '/' key press
+			snookerGame->revert_game_state();
+			break;
+		case 48:
+			// Handle '0' key press
+			snookerGame->foul_occurred();
+			break;
+		case 49:
+			// Handle '1' key press
+			snookerGame->receive_point_input(1);
+			break;
+		case 50:
+			// Handle '2' key press
+			snookerGame->receive_point_input(2);
+			break;
+		case 51:
+			// Handle '3' key press
+			snookerGame->receive_point_input(3);
+			break;
+		case 52:
+			// Handle '4' key press
+			snookerGame->receive_point_input(4);
+			break;
+		case 53:
+			// Handle '5' key press
+			snookerGame->receive_point_input(5);
+			break;
+		case 54:
+			// Handle '6' key press
+			snookerGame->receive_point_input(6);
+			break;
+		case 55:
+			// Handle '7' key press
+			snookerGame->receive_point_input(7);
+			break;
+		default:
+			std::cout << key << std::endl;
+			std::cout << int(key) << "\n" << std::endl;
+			break;
+	}
+}
+
+
+/**
+ * Handle user input in the English Billiards game state
+ */
+void ScoreboardController::english_billiards_input(int key)
+{
+	
 }
 
 
@@ -137,9 +163,38 @@ bool ScoreboardController::running()
 
 
 /**
- * Sets up the inital layout for the scoreboard
+ * Draw the game selection state to the board
  */
-void ScoreboardController::setup_scoreboard()
+void ScoreboardController::draw_game_selection_screen()
+{
+	DrawLine(canvas(), 5, 0, 9, 0, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 5, 0, 5, 4, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 5, 4, 9, 4, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 9, 4, 9, 2, rgb_matrix::Color(255, 0, 0));
+	canvas()->SetPixel( 8, 2, 255, 0, 0);
+	
+	DrawLine(canvas(), 11, 0, 11, 4, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 11, 0, 14, 0, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 14, 0, 14, 4, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 11, 2, 14, 2, rgb_matrix::Color(255, 0, 0));
+	
+	DrawLine(canvas(), 16, 0, 16, 4, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 20, 0, 20, 4, rgb_matrix::Color(255, 0, 0));
+	canvas()->SetPixel( 17, 1, 255, 0, 0);
+	canvas()->SetPixel( 18, 2, 255, 0, 0);
+	canvas()->SetPixel( 19, 1, 255, 0, 0);
+	
+	DrawLine(canvas(), 22, 0, 22, 4, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 22, 0, 25, 0, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 22, 2, 25, 2, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 22, 4, 25, 4, rgb_matrix::Color(255, 0, 0));
+}
+
+
+/**
+ * Draw the snooker scoreboard elements
+ */
+void ScoreboardController::draw_snooker_scoreboard()
 {
 	
 	// Initial shooting player
@@ -296,7 +351,7 @@ void ScoreboardController::player_shooting(int player, bool onRed)
 void ScoreboardController::draw_shooting_indicator(int x, bool onRed)
 {
 	int y = 0;
-	int remainingPoints = theGame->remaining_points();
+	int remainingPoints = snookerGame->remaining_points();
 	
 	// Handle the special cases for drawing the shooting indicator and
 	//  default to typical drawing behavior
@@ -396,82 +451,37 @@ void ScoreboardController::draw_foul_indicator(int player)
 void ScoreboardController::update_board()
 {
 	clear_board();
-	populate_board();
 
-	int player = theGame->shooting_player();
+	switch(gameState){
+		case 0:
+			draw_game_selection_screen();
+			break;
+		case 1:
+			draw_snooker_scoreboard();
+			populate_snooker_board();
+			
+			int player = snookerGame->shooting_player();
 	
-	if(theGame->player_fouled()){
-		draw_foul_indicator(player);
-	} else {
-		player_shooting(player, theGame->player_shooting_red());
+			if(snookerGame->player_fouled()){
+				draw_foul_indicator(player);
+			} else {
+				player_shooting(player, snookerGame->player_shooting_red());
+			}
+			break;
+		case 2:
+			break;
 	}
 }
 
 
 /** 
- * Clears the point, break, reds, and points on table
- *  values from the board.
+ * Clears LED board.
  */
 void ScoreboardController::clear_board()
 {	
-	// Clear shoting indicator
-	DrawLine(canvas(), 0, 0, 31, 0, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 0, 1, 31, 1, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 0, 2, 31, 2, rgb_matrix::Color(0, 0, 0));
-	
-	// Clear points
-	DrawLine(canvas(), 0, 3, 13, 3, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 0, 4, 13, 4, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 0, 5, 13, 5, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 0, 6, 13, 6, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 0, 7, 13, 7, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 0, 8, 13, 8, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 0, 9, 13, 9, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 0, 10, 13, 10, rgb_matrix::Color(0, 0, 0));
-	
-	DrawLine(canvas(), 18, 3, 31, 3, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 18, 4, 31, 4, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 18, 5, 31, 5, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 18, 6, 31, 6, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 18, 7, 31, 7, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 18, 8, 31, 8, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 18, 9, 31, 9, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 18, 10, 31, 10, rgb_matrix::Color(0, 0, 0));
-	
-	// Clear break
-	DrawLine(canvas(), 1, 13, 12, 13, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 1, 14, 12, 14, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 1, 15, 12, 15, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 1, 16, 12, 16, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 1, 17, 12, 17, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 1, 18, 12, 18, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 1, 19, 12, 19, rgb_matrix::Color(0, 0, 0));
-	
-	DrawLine(canvas(), 19, 13, 30, 13, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 19, 14, 30, 14, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 19, 15, 30, 15, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 19, 16, 30, 16, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 19, 17, 30, 17, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 19, 18, 30, 18, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 19, 19, 30, 19, rgb_matrix::Color(0, 0, 0));
-	
-	// Clear reds
-	DrawLine(canvas(), 3, 23, 9, 23, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 3, 24, 9, 24, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 3, 25, 9, 25, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 3, 26, 9, 26, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 3, 27, 9, 27, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 3, 28, 9, 28, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 3, 29, 9, 29, rgb_matrix::Color(0, 0, 0));
-	
-	// Clear remaining points
-	DrawLine(canvas(), 16, 23, 27, 23, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 16, 24, 27, 24, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 16, 25, 27, 25, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 16, 26, 27, 26, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 16, 27, 27, 27, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 16, 28, 27, 28, rgb_matrix::Color(0, 0, 0));
-	DrawLine(canvas(), 16, 29, 27, 29, rgb_matrix::Color(0, 0, 0));
+	for(int y=0; y<32; y++){
+		DrawLine(canvas(), 0, y, 31, y, rgb_matrix::Color(0, 0, 0));
+	}
 }
 
 
@@ -479,13 +489,13 @@ void ScoreboardController::clear_board()
  * Populates the current points, break, reds, and points
  *  on table value spaces on the board.
  */
-void ScoreboardController::populate_board()
+void ScoreboardController::populate_snooker_board()
 {	
 	// Populate player points
 	int points[2];
-	theGame->get_player_scores(points);
-	int pointDiff = theGame->point_spread();
-	int remainingPoints = theGame->remaining_points();
+	snookerGame->get_player_scores(points);
+	int pointDiff = snookerGame->point_spread();
+	int remainingPoints = snookerGame->remaining_points();
 	
 	// Determine if a player is further behind in points than are left
 	//  on the table and invert their score coloring if they are.
@@ -506,14 +516,14 @@ void ScoreboardController::populate_board()
 	
 	// Populate player breaks
 	int breaks[2];
-	theGame->get_player_breaks(breaks);
+	snookerGame->get_player_breaks(breaks);
 
 	draw_left_aligned(breaks[0], 1, 13, 128, 128, 128);
 	draw_right_aligned(breaks[1], 19, 13, 128, 128, 128);
 	
 	
 	// Popluate reds on table
-	int reds = theGame->remaining_reds();
+	int reds = snookerGame->remaining_reds();
 	
 	if((reds/10)%10 != 0){
 		draw_number(1, 3, 23, 128, 128, 128);
@@ -523,7 +533,7 @@ void ScoreboardController::populate_board()
 	
 	
 	// Populate points on table
-	int pointsOnTable = theGame->remaining_points();
+	int pointsOnTable = snookerGame->remaining_points();
 	
 	draw_right_aligned(pointsOnTable, 16, 23, 128, 128, 128);
 }
