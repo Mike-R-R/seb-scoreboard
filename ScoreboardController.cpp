@@ -48,6 +48,7 @@ void ScoreboardController::Run()
 				case 2:
 					english_billiards_input(int(key));
 					break;
+			}
 		}
 		usleep(100000);
 		update_board();
