@@ -203,8 +203,8 @@ void ScoreboardController::draw_game_selection_screen()
 	DrawLine(canvas(), 22, 4, 25, 4, rgb_matrix::Color(255, 0, 0));
 	
 	// Draw "SELECT"
-	DrawLine(canvas(), 1, 6, 4, 6, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 1, 10, 4, 10, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 2, 6, 4, 6, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 1, 10, 3, 10, rgb_matrix::Color(255, 0, 0));
 	DrawLine(canvas(), 2, 8, 3, 8, rgb_matrix::Color(255, 0, 0));
 	canvas()->SetPixel( 1, 7, 255, 0, 0);
 	canvas()->SetPixel( 4, 9, 255, 0, 0);
@@ -230,8 +230,8 @@ void ScoreboardController::draw_game_selection_screen()
 	DrawLine(canvas(), 28, 6, 28, 10, rgb_matrix::Color(255, 0, 0));
 	
 	// Draw "1 = S"
-	DrawLine(canvas(), 14, 15, 17, 15, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 14, 18, 17, 18, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 14, 15, 17, 15, rgb_matrix::Color(100, 100, 100));
+	DrawLine(canvas(), 14, 18, 17, 18, rgb_matrix::Color(100, 100, 100));
 	
 	DrawLine(canvas(), 10, 13, 10, 20, rgb_matrix::Color(255, 0, 0));
 	DrawLine(canvas(), 8, 20, 12, 20, rgb_matrix::Color(255, 0, 0));
@@ -248,8 +248,8 @@ void ScoreboardController::draw_game_selection_screen()
 	DrawLine(canvas(), 19, 20, 22, 20, rgb_matrix::Color(255, 0, 0));
 	
 	// Draw "2 = E.B."
-	DrawLine(canvas(), 9, 24, 12, 24, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 9, 27, 12, 27, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 9, 24, 12, 24, rgb_matrix::Color(100, 100, 100));
+	DrawLine(canvas(), 9, 27, 12, 27, rgb_matrix::Color(100, 100, 100));
 	
 	DrawLine(canvas(), 3, 22, 6, 22, rgb_matrix::Color(255, 0, 0));
 	DrawLine(canvas(), 3, 23, 7, 23, rgb_matrix::Color(255, 0, 0));
@@ -260,29 +260,29 @@ void ScoreboardController::draw_game_selection_screen()
 	DrawLine(canvas(), 3, 28, 7, 28, rgb_matrix::Color(255, 0, 0));
 	DrawLine(canvas(), 3, 29, 7, 29, rgb_matrix::Color(255, 0, 0));
 	
-	DrawLine(canvas(), 14, 22, 18, 22, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 14, 23, 18, 23, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 14, 24, 15, 24, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 14, 25, 18, 25, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 14, 26, 18, 26, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 14, 27, 15, 27, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 14, 28, 18, 28, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 14, 29, 18, 29, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 14, 22, 18, 22, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 14, 23, 18, 23, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 14, 24, 15, 24, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 14, 25, 18, 25, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 14, 26, 18, 26, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 14, 27, 15, 27, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 14, 28, 18, 28, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 14, 29, 18, 29, rgb_matrix::Color(0, 0, 100));
 	
-	canvas()->SetPixel( 20, 29, 255, 0, 0);
+	canvas()->SetPixel( 20, 29, 100, 100, 100);
 	
-	DrawLine(canvas(), 22, 22, 25, 22, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 22, 23, 26, 23, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 22, 24, 23, 24, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 25, 24, 26, 24, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 22, 25, 25, 25, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 22, 26, 26, 26, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 22, 27, 23, 27, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 25, 27, 26, 27, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 22, 28, 26, 28, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 22, 29, 25, 29, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 22, 22, 25, 22, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 22, 23, 26, 23, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 22, 24, 23, 24, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 25, 24, 26, 24, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 22, 25, 25, 25, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 22, 26, 26, 26, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 22, 27, 23, 27, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 25, 27, 26, 27, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 22, 28, 26, 28, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 22, 29, 25, 29, rgb_matrix::Color(0, 0, 100));
 	
-	canvas()->SetPixel( 28, 29, 255, 0, 0);
+	canvas()->SetPixel( 28, 29, 100, 100, 100);
 }
 
 
