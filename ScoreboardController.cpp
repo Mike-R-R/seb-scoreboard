@@ -204,7 +204,7 @@ void ScoreboardController::draw_game_selection_screen()
 	
 	
 	DrawLine(canvas(), 1, 6, 4, 6, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 0, 10, 4, 10, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 1, 10, 4, 10, rgb_matrix::Color(255, 0, 0));
 	DrawLine(canvas(), 2, 8, 3, 8, rgb_matrix::Color(255, 0, 0));
 	canvas()->SetPixel( 1, 7, 255, 0, 0);
 	canvas()->SetPixel( 4, 9, 255, 0, 0);
