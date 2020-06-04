@@ -248,39 +248,41 @@ void ScoreboardController::draw_game_selection_screen()
 	DrawLine(canvas(), 19, 20, 22, 20, rgb_matrix::Color(255, 0, 0));
 	
 	// Draw "2 = E.B."
-	DrawLine(canvas(), 14, 24, 17, 24, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 14, 27, 17, 27, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 9, 24, 12, 24, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 9, 27, 12, 27, rgb_matrix::Color(255, 0, 0));
 	
-	DrawLine(canvas(), 8, 22, 11, 22, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 8, 23, 12, 23, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 11, 24, 12, 24, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 10, 25, 12, 25, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 9, 26, 11, 26, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 8, 27, 9, 27, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 8, 28, 12, 28, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 8, 29, 12, 29, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 3, 22, 6, 22, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 3, 23, 7, 23, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 6, 24, 7, 24, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 5, 25, 7, 25, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 4, 26, 6, 26, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 3, 27, 4, 27, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 3, 28, 7, 28, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 3, 29, 7, 29, rgb_matrix::Color(255, 0, 0));
 	
-	DrawLine(canvas(), 19, 22, 23, 22, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 19, 23, 23, 23, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 19, 24, 20, 24, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 19, 25, 23, 25, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 19, 26, 23, 26, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 19, 27, 20, 27, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 19, 28, 23, 28, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 19, 29, 23, 29, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 14, 22, 18, 22, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 14, 23, 18, 23, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 14, 24, 15, 24, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 14, 25, 18, 25, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 14, 26, 18, 26, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 14, 27, 15, 27, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 14, 28, 18, 28, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 14, 29, 18, 29, rgb_matrix::Color(255, 0, 0));
 	
-	canvas()->SetPixel( 25, 29, 255, 0, 0);
+	canvas()->SetPixel( 20, 29, 255, 0, 0);
 	
-	DrawLine(canvas(), 27, 22, 30, 22, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 27, 23, 31, 23, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 27, 24, 28, 24, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 30, 24, 31, 24, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 27, 25, 30, 25, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 27, 26, 31, 26, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 27, 27, 28, 27, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 30, 27, 31, 27, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 27, 28, 31, 28, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 27, 29, 30, 29, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 22, 22, 25, 22, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 22, 23, 26, 23, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 22, 24, 23, 24, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 25, 24, 26, 24, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 22, 25, 25, 25, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 22, 26, 26, 26, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 22, 27, 23, 27, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 25, 27, 26, 27, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 22, 28, 26, 28, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 22, 29, 25, 29, rgb_matrix::Color(255, 0, 0));
+	
+	canvas()->SetPixel( 28, 29, 255, 0, 0);
 }
 
 
