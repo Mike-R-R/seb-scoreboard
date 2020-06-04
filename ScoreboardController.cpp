@@ -179,9 +179,9 @@ bool ScoreboardController::running()
  */
 void ScoreboardController::draw_game_selection_screen()
 {
-	DrawLine(canvas(), 5, 0, 9, 0, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 5, 0, 5, 4, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 5, 4, 9, 4, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 6, 0, 9, 0, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 6, 0, 6, 4, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 6, 4, 9, 4, rgb_matrix::Color(255, 0, 0));
 	DrawLine(canvas(), 9, 4, 9, 2, rgb_matrix::Color(255, 0, 0));
 	canvas()->SetPixel( 8, 2, 255, 0, 0);
 	
@@ -200,6 +200,34 @@ void ScoreboardController::draw_game_selection_screen()
 	DrawLine(canvas(), 22, 0, 25, 0, rgb_matrix::Color(255, 0, 0));
 	DrawLine(canvas(), 22, 2, 25, 2, rgb_matrix::Color(255, 0, 0));
 	DrawLine(canvas(), 22, 4, 25, 4, rgb_matrix::Color(255, 0, 0));
+	
+	
+	
+	DrawLine(canvas(), 0, 6, 3, 6, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 0, 10, 3, 10, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 1, 8, 2, 8, rgb_matrix::Color(255, 0, 0));
+	canvas()->SetPixel( 0, 7, 255, 0, 0);
+	canvas()->SetPixel( 3, 9, 255, 0, 0);
+	
+	DrawLine(canvas(), 5, 6, 5, 10, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 5, 6, 8, 6, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 5, 8, 8, 8, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 5, 10, 8, 10, rgb_matrix::Color(255, 0, 0));
+	
+	DrawLine(canvas(), 10, 6, 10, 10, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 10, 10, 13, 10, rgb_matrix::Color(255, 0, 0));
+	
+	DrawLine(canvas(), 15, 6, 15, 10, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 15, 6, 18, 6, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 15, 8, 18, 8, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 15, 10, 18, 10, rgb_matrix::Color(255, 0, 0));
+	
+	DrawLine(canvas(), 20, 6, 23, 6, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 20, 6, 20, 10, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 20, 10, 23, 10, rgb_matrix::Color(255, 0, 0));
+	
+	DrawLine(canvas(), 25, 6, 29, 6, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 27, 6, 27, 10, rgb_matrix::Color(255, 0, 0));
 }
 
 
@@ -207,11 +235,7 @@ void ScoreboardController::draw_game_selection_screen()
  * Draw the snooker scoreboard elements
  */
 void ScoreboardController::draw_snooker_scoreboard()
-{
-	
-	// Initial shooting player
-	player_shooting(1, false);
-	
+{	
 	// Setup P area indicating player points
 	canvas()->SetPixel( 14, 3, 255, 0, 0);
 	canvas()->SetPixel( 15, 3, 255, 0, 0);
