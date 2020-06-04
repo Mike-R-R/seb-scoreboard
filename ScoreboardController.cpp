@@ -457,6 +457,7 @@ void ScoreboardController::update_board()
 			draw_game_selection_screen();
 			break;
 		case 1:
+		{
 			draw_snooker_scoreboard();
 			populate_snooker_board();
 			
@@ -468,6 +469,7 @@ void ScoreboardController::update_board()
 				player_shooting(player, snookerGame->player_shooting_red());
 			}
 			break;
+		}
 		case 2:
 			break;
 	}
