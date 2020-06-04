@@ -39,6 +39,7 @@ void ScoreboardController::Run()
 		if(check_for_input(&key)) {
 			snooker_input(int(key));
 		}
+		usleep(100000);
 		update_board();
 	}
 }
@@ -249,8 +250,6 @@ void ScoreboardController::draw_snooker_scoreboard()
 	DrawLine(canvas(), 22, 31, 24, 31, rgb_matrix::Color(0, 0, 170));
 	DrawLine(canvas(), 25, 31, 27, 31, rgb_matrix::Color(255, 0, 127));
 	DrawLine(canvas(), 28, 31, 30, 31, rgb_matrix::Color(32, 32, 32));
-
-	update_board();
 }
 
 
