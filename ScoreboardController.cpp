@@ -38,7 +38,16 @@ void ScoreboardController::Run()
 	
 	while(game_running){
 		if(check_for_input(&key)) {
-			snooker_input(int(key));
+			switch(gameState){
+				case 0:
+					game_selection_input(int(key));
+					break;
+				case 1:
+					snooker_input(int(key));
+					break;
+				case 2:
+					english_billiards_input(int(key));
+					break;
 		}
 		usleep(100000);
 		update_board();
