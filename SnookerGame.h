@@ -17,8 +17,8 @@ class SnookerGame {
         void get_player_breaks(int *);
         int point_spread();
         void receive_point_input(int);
-	bool player_fouled();
-	void foul_occurred();
+		bool player_fouled();
+		void foul_occurred();
         void add_foul_points(int);
         void free_ball();
         void end_frame();
@@ -26,20 +26,20 @@ class SnookerGame {
         void lost_red();
         int shooting_player();
         bool player_shooting_red();
-	void revert_game_state();
+		void revert_game_state();
         
     private:
-	Player* player1;
-	Player* player2;
-	int pointsOnTable;
-	int reds;
-	bool foul;
-	bool freeBall;
-	SnookerStack stateStack;
+		Player* player1;
+		Player* player2;
+		int pointsOnTable;
+		int reds;
+		bool foul;
+		bool freeBall;
+		SnookerStack stateStack;
 	
-	Player* player_at_table();
-	Player* player_not_at_table();
-	void game_state_changed();
+		Player* player_at_table();
+		Player* player_not_at_table();
+		void game_state_changed();
 };
 
 #endif

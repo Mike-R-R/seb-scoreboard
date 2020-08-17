@@ -1,6 +1,6 @@
 
-#ifndef SNOOKER_QUEUE
-#define SNOOKER_QUEUE
+#ifndef SNOOKER_STACK
+#define SNOOKER_STACK
 
 #include <stack>
 

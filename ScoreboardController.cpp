@@ -71,6 +71,7 @@ void ScoreboardController::game_selection_input(int key)
 		case 50:
 			// Handle '2' key press
 			gameState = 2;
+			englishBilliardsGame = new EnglishBilliardsGame();
 			break;
 	}
 }
@@ -152,7 +153,69 @@ void ScoreboardController::snooker_input(int key)
  */
 void ScoreboardController::english_billiards_input(int key)
 {
-	
+	switch(int key){
+			switch(key){
+		case 7:
+			// Handle backspace key press
+			englishBilliardsGame->revert_game_state();
+			break;
+		case 10:
+			// Handle enter key press
+			englishBilliardsGame->end_break();
+			break;
+		case 42:
+			// Handle '*' key press
+			englishBilliardsGame->end_frame();
+			break;
+		case 43:
+			// Handle '+' key press
+			englishBilliardsGame->free_ball();
+			break;
+		case 45:
+			// Handle '-' key press
+			englishBilliardsGame->lost_red();
+			break;
+		case 47:
+			// Handle '/' key press
+			englishBilliardsGame->revert_game_state();
+			break;
+		case 48:
+			// Handle '0' key press
+			englishBilliardsGame->foul_occurred();
+			break;
+		case 49:
+			// Handle '1' key press
+			englishBilliardsGame->receive_point_input(1);
+			break;
+		case 50:
+			// Handle '2' key press
+			englishBilliardsGame->receive_point_input(2);
+			break;
+		case 51:
+			// Handle '3' key press
+			englishBilliardsGame->receive_point_input(3);
+			break;
+		case 52:
+			// Handle '4' key press
+			englishBilliardsGame->receive_point_input(4);
+			break;
+		case 53:
+			// Handle '5' key press
+			englishBilliardsGame->receive_point_input(5);
+			break;
+		case 54:
+			// Handle '6' key press
+			englishBilliardsGame->receive_point_input(6);
+			break;
+		case 55:
+			// Handle '7' key press
+			englishBilliardsGame->receive_point_input(7);
+			break;
+		default:
+			std::cout << key << std::endl;
+			std::cout << int(key) << "\n" << std::endl;
+			break;
+	}
 }
 
 

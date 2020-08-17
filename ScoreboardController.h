@@ -7,6 +7,7 @@
 #include "pixel-mapper.h"
 #include "graphics.h"
 #include "SnookerGame.h"
+#include "EnglishBilliardsGame.h"
 
 #include <curses.h>
 
@@ -22,6 +23,7 @@ class ScoreboardController : public rgb_matrix::ThreadedCanvasManipulator{
 	private:
 		bool game_running;
 		SnookerGame* snookerGame;
+		EnglishBilliardsGame* englishBilliardsGame;
 		
 		/* Represents the current game state.
 		  *  0 = Game selection
