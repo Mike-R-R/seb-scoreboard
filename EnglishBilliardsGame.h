@@ -21,7 +21,7 @@ class EnglighBilliardsGame {
 		void add_foul_points(int);
 		void end_frame();
 		int shooting_player();
-		bool revert_game_state();
+		void revert_game_state();
 		
 	private:
 		Player* player1;
@@ -29,6 +29,7 @@ class EnglighBilliardsGame {
 		bool foul;
 		bool timerRunning;
 		Timer frameTimer;
-		
+		SnookerStack stateStack;
 
+		void game_state_changed();
 }

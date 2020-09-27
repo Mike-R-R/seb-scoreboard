@@ -61,6 +61,7 @@ int SnookerGame::remaining_points()
     return pointsOnTable;
 }
 
+
 /**
  * Returns the players scores in an array where the
  *  first integer is player 1 and the second is
