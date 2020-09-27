@@ -4,6 +4,12 @@
 
 #include "Player.h"
 
+struct Timer{
+	int hours;
+	int minutes;
+	int seconds;
+}
+
 class EnglighBilliardsGame {
 	public:
 		EnglighBilliardsGame();
@@ -21,5 +27,8 @@ class EnglighBilliardsGame {
 		Player* player1;
 		Player* player2;
 		bool foul;
+		bool timerRunning;
+		Timer frameTimer;
+		
 
 }
