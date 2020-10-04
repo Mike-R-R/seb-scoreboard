@@ -1,7 +1,7 @@
 
 #include "EnglishBilliardsGame.h"
 
-EnglighBilliardsGame::EnglighBilliardsGame(){
+EnglishBilliardsGame::EnglishBilliardsGame(){
 	frameTimer.hours = 0;
 	framTimer.minutes = 0;
 	framTimer.seconds = 0;
@@ -11,7 +11,7 @@ EnglighBilliardsGame::EnglighBilliardsGame(){
 }
 
 
-EnglighBilliardsGame::~EnglighBilliardsGame(){
+EnglishBilliardsGame::~EnglishBilliardsGame(){
 	
 }
 
@@ -21,7 +21,7 @@ EnglighBilliardsGame::~EnglighBilliardsGame(){
  *  first integer is player 1 and the second is
  *  player 2
  */
-void SnookerGame::get_player_scores(int* scores)
+void EnglishBilliardsGame::get_player_scores(int* scores)
 {
     *scores = player1->get_score();
     *(scores + 1) = player2->get_score();
@@ -33,7 +33,7 @@ void SnookerGame::get_player_scores(int* scores)
  *  first integer is player 1 and the second is
  *  player 2
  */
-void SnookerGame::get_player_breaks(int* breaks)
+void EnglishBilliardsGame::get_player_breaks(int* breaks)
 {
     *breaks = player1->get_current_break();
     *(breaks + 1) = player2->get_current_break();
@@ -44,7 +44,7 @@ void SnookerGame::get_player_breaks(int* breaks)
  * Receives point input from the user and determines how to add the
  *  point value to a player if the input is valid for the state.
  */
-void EnglighBilliardsGame::receive_point_intput(int){
+void EnglishBilliardsGame::receive_point_intput(int){
 	Player* playerAtTable = player_at_table();
 	playerAtTable->ball_potted(points);
 }
@@ -53,7 +53,7 @@ void EnglighBilliardsGame::receive_point_intput(int){
 /*
  * Gets the foul status of the shooting player
  */
-bool SnookerGame::player_fouled()
+bool EnglishBilliardsGame::player_fouled()
 {
     return foul;
 }
@@ -63,7 +63,7 @@ bool SnookerGame::player_fouled()
  * Add foul points to the player not at the table and end the break
  *  of the player at the table.
  */
-void SnookerGame::add_foul_points(int points)
+void EnglishBilliardsGame::add_foul_points(int points)
 {
 	Player* playerNotAtTable = player_not_at_table();
 	
@@ -77,7 +77,7 @@ void SnookerGame::add_foul_points(int points)
  * This function awards a frame to the player with the
  *  highest score and resets for the next frame
  */
-void SnookerGame::end_frame()
+void EnglishBilliardsGame::end_frame()
 {
     int scores[2];
     get_player_scores(scores);
@@ -108,7 +108,7 @@ void SnookerGame::end_frame()
  * Gets the player at the table and returns a 1 for player
  *  1 and a 2 for player 2.
  */
-int SnookerGame::shooting_player()
+int EnglishBilliardsGame::shooting_player()
 {
     if(player1->get_at_table())
     {
@@ -125,7 +125,7 @@ int SnookerGame::shooting_player()
  * Private helper method to create a snapshot of the current game state
  *  when a change is requested and add it to the snooker game state stack.
  */
-void SnookerGame::game_state_changed()
+void EnglishBilliardsGame::game_state_changed()
 {
     GameState currentState;
     currentState.p1Points = player1->get_score();
@@ -146,7 +146,7 @@ void SnookerGame::game_state_changed()
 /**
  * Revert snooker game to last save state in stack.
  */
-void SnookerGame::revert_game_state()
+void EnglishBilliardsGame::revert_game_state()
 {
     GameState* revertState = stateStack.previous_game_state();
     

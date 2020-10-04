@@ -12,8 +12,8 @@ struct Timer{
 
 class EnglishBilliardsGame {
 	public:
-		EnglighBilliardsGame();
-		~EnglighBilliardsGame();
+		EnglishBilliardsGame();
+		~EnglishBilliardsGame();
 		void get_player_scores(int *);
 		void get_player_breaks(int *);
 		void receive_point_intput(int);
