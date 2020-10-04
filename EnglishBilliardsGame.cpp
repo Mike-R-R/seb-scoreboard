@@ -7,7 +7,8 @@ EnglishBilliardsGame::EnglishBilliardsGame(){
 	frameTimer.seconds = 0;
 	timerRunning = true;
 	foul = false;
-	player1.set_at_table(true);
+	player1 = new Player(true);
+    player2 = new Player(false);
 }
 
 
