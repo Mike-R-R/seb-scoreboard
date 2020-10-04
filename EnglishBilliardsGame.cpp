@@ -64,7 +64,7 @@ bool EnglishBilliardsGame::player_fouled()
 /*
  * Indicates that the player at the table has fouled.
  */
-void SnookerGame::foul_occurred()
+void EnglishBilliardsGame::foul_occurred()
 {
 	game_state_changed();
 	foul = true;
