@@ -33,3 +33,5 @@ class EnglighBilliardsGame {
 
 		void game_state_changed();
 }
+
+#endif
