@@ -153,8 +153,7 @@ void ScoreboardController::snooker_input(int key)
  */
 void ScoreboardController::english_billiards_input(int key)
 {
-	switch(int key){
-			switch(key){
+	switch(key){
 		case 7:
 			// Handle backspace key press
 			englishBilliardsGame->revert_game_state();
@@ -169,11 +168,9 @@ void ScoreboardController::english_billiards_input(int key)
 			break;
 		case 43:
 			// Handle '+' key press
-			englishBilliardsGame->free_ball();
 			break;
 		case 45:
 			// Handle '-' key press
-			englishBilliardsGame->lost_red();
 			break;
 		case 47:
 			// Handle '/' key press

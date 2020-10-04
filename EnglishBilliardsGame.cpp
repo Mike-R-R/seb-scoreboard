@@ -105,6 +105,24 @@ void EnglishBilliardsGame::end_frame()
 
 
 /**
+ * This function ends the break of the player at the
+ *  table and begins the next players break
+ */
+void EnglishBilliardsGame::end_break()
+{
+	Player* playerAtTable = player_at_table();
+	Player* playerNotAtTable = player_not_at_table();
+	
+	if(!foul){
+	    game_state_changed();
+	}
+	
+	playerAtTable->end_break();
+	playerNotAtTable->begin_break();
+}
+
+
+/**
  * Gets the player at the table and returns a 1 for player
  *  1 and a 2 for player 2.
  */
