@@ -8,7 +8,7 @@ struct Timer{
 	int hours;
 	int minutes;
 	int seconds;
-}
+};
 
 class EnglighBilliardsGame {
 	public:
