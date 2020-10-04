@@ -3,6 +3,7 @@
 #define EB_GAME
 
 #include "Player.h"
+#include "SnookerStack.h"
 
 struct Timer{
 	int hours;

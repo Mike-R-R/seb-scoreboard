@@ -3,8 +3,8 @@
 
 EnglishBilliardsGame::EnglishBilliardsGame(){
 	frameTimer.hours = 0;
-	framTimer.minutes = 0;
-	framTimer.seconds = 0;
+	frameTimer.minutes = 0;
+	frameTimer.seconds = 0;
 	timerRunning = true;
 	foul = false;
 	player1.set_at_table(true);
@@ -108,8 +108,8 @@ void EnglishBilliardsGame::end_frame()
     }
     
 	frameTimer.hours = 0;
-	framTimer.minutes = 0;
-	framTimer.seconds = 0;
+	frameTimer.minutes = 0;
+	frameTimer.seconds = 0;
 	timerRunning = true;
 	foul = false;
 	player1.set_at_table(true);
