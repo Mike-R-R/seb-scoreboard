@@ -32,6 +32,6 @@ class EnglighBilliardsGame {
 		SnookerStack stateStack;
 
 		void game_state_changed();
-}
+};
 
 #endif
