@@ -10,7 +10,7 @@ struct Timer{
 	int seconds;
 };
 
-class EnglighBilliardsGame {
+class EnglishBilliardsGame {
 	public:
 		EnglighBilliardsGame();
 		~EnglighBilliardsGame();
