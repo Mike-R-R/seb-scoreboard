@@ -112,7 +112,8 @@ void EnglishBilliardsGame::end_frame()
 	frameTimer.seconds = 0;
 	timerRunning = true;
 	foul = false;
-	player1.set_at_table(true);
+	player1->set_at_table(true);
+	player2->set_at_table(false);
 }
 
 
@@ -160,6 +161,19 @@ Player* EnglishBilliardsGame::player_at_table()
 	return player1;
     } else {
         return player2;
+    }
+}
+
+
+/**
+ * Private helper method to get player not at table.
+ */
+Player* SnookerGame::player_not_at_table()
+{
+    if(player1->get_at_table()){
+        return player2;
+    } else {
+        return player1;
     }
 }
 
