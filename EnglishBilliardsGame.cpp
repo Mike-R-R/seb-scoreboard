@@ -44,7 +44,8 @@ void EnglishBilliardsGame::get_player_breaks(int* breaks)
  * Receives point input from the user and determines how to add the
  *  point value to a player if the input is valid for the state.
  */
-void EnglishBilliardsGame::receive_point_input(int){
+void EnglishBilliardsGame::receive_point_input(int points)
+{
 	Player* playerAtTable = player_at_table();
 	playerAtTable->ball_potted(points);
 }
@@ -64,10 +65,8 @@ bool EnglishBilliardsGame::player_fouled()
  */
 void SnookerGame::foul_occurred()
 {
-    if(pointsOnTable != 0){
 	game_state_changed();
 	foul = true;
-    }
 }
 
 
@@ -147,6 +146,19 @@ int EnglishBilliardsGame::shooting_player()
     else
     {
         return 2;
+    }
+}
+
+
+/**
+ * Private helper method to get player at table.
+ */
+Player* EnglishBilliardsGame::player_at_table()
+{
+    if(player1->get_at_table()){
+	return player1;
+    } else {
+        return player2;
     }
 }
 

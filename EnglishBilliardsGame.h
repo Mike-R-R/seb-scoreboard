@@ -34,6 +34,7 @@ class EnglishBilliardsGame {
 		Timer frameTimer;
 		SnookerStack stateStack;
 
+		Player* player_at_table();
 		void game_state_changed();
 };
 
