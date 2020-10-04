@@ -16,7 +16,7 @@ class EnglishBilliardsGame {
 		~EnglishBilliardsGame();
 		void get_player_scores(int *);
 		void get_player_breaks(int *);
-		void receive_point_intput(int);
+		void receive_point_input(int);
 		bool player_fouled();
 		void add_foul_points(int);
 		void end_frame();
