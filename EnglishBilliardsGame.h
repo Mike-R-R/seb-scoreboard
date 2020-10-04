@@ -18,8 +18,10 @@ class EnglishBilliardsGame {
 		void get_player_breaks(int *);
 		void receive_point_input(int);
 		bool player_fouled();
+		void foul_occurred();
 		void add_foul_points(int);
 		void end_frame();
+		void end_break();
 		int shooting_player();
 		void revert_game_state();
 		

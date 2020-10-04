@@ -60,6 +60,18 @@ bool EnglishBilliardsGame::player_fouled()
 
 
 /*
+ * Indicates that the player at the table has fouled.
+ */
+void SnookerGame::foul_occurred()
+{
+    if(pointsOnTable != 0){
+	game_state_changed();
+	foul = true;
+    }
+}
+
+
+/*
  * Add foul points to the player not at the table and end the break
  *  of the player at the table.
  */
