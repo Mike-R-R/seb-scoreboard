@@ -108,6 +108,11 @@ void ScoreboardController::snooker_input(int key)
 			// Handle '-' key press
 			snookerGame->lost_red();
 			break;
+		case 46:
+			// Handle '.' key press
+			gameState = 0;
+			delete snookerGame;
+			break;
 		case 47:
 			// Handle '/' key press
 			snookerGame->revert_game_state();
@@ -176,6 +181,11 @@ void ScoreboardController::english_billiards_input(int key)
 		case 45:
 			// Handle '-' key press
 			break;
+		case 46:
+			// Handle '.' key press
+			gameState = 0;
+			delete englishBilliardsGame;
+			break;
 		case 47:
 			// Handle '/' key press
 			englishBilliardsGame->revert_game_state();
@@ -186,7 +196,7 @@ void ScoreboardController::english_billiards_input(int key)
 			break;
 		case 49:
 			// Handle '1' key press
-			englishBilliardsGame->receive_point_input(1);
+			englishBilliardsGame->receive_point_input(10);
 			break;
 		case 50:
 			// Handle '2' key press
@@ -196,21 +206,21 @@ void ScoreboardController::english_billiards_input(int key)
 			// Handle '3' key press
 			englishBilliardsGame->receive_point_input(3);
 			break;
-		case 52:
-			// Handle '4' key press
-			englishBilliardsGame->receive_point_input(4);
-			break;
 		case 53:
 			// Handle '5' key press
 			englishBilliardsGame->receive_point_input(5);
 			break;
-		case 54:
-			// Handle '6' key press
-			englishBilliardsGame->receive_point_input(6);
-			break;
 		case 55:
 			// Handle '7' key press
 			englishBilliardsGame->receive_point_input(7);
+			break;
+		case 56:
+			// Handle '8' key press
+			englishBilliardsGame->receive_point_input(8);
+			break;
+		case 57:
+			// Handle '9' key press
+			englishBilliardsGame->receive_point_input(9);
 			break;
 		default:
 			std::cout << key << std::endl;
