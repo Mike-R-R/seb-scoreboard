@@ -114,10 +114,7 @@ void EnglishBilliardsGame::end_frame()
         player1->lost_frame();
     }
     
-	frameTimer.hours = 0;
-	frameTimer.minutes = 0;
-	frameTimer.seconds = 0;
-	timerRunning = true;
+	frameTimer.reset_timer();
 	foul = false;
 	player1->set_at_table(true);
 	player2->set_at_table(false);
@@ -240,7 +237,7 @@ void EnglishBilliardsGame::revert_game_state()
 /*
  * Returns the current frame timer.
  */
-void EnglishBilliardsGame::et_game_time(int *time)
+void EnglishBilliardsGame::get_game_time(int *time)
 {
 	frameTimer.get_time(time);
 }
