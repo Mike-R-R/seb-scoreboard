@@ -706,11 +706,11 @@ void ScoreboardController::populate_snooker_board()
 	} else if((pointDiff*-1) > remainingPoints){
 		// Draw player 1 inverted
 		draw_left_inverted(points[0]);
-		draw_right_aligned(points[1], 19, 3, 128, 128, 128);
+		draw_right_aligned(points[1], 29, 3, 128, 128, 128);
 	} else {
 	
 		draw_left_aligned(points[0], 1, 3, 128, 128, 128);
-		draw_right_aligned(points[1], 19, 3, 128, 128, 128);
+		draw_right_aligned(points[1], 29, 3, 128, 128, 128);
 	}
 	
 	
@@ -719,7 +719,7 @@ void ScoreboardController::populate_snooker_board()
 	snookerGame->get_player_breaks(breaks);
 
 	draw_left_aligned(breaks[0], 1, 13, 128, 128, 128);
-	draw_right_aligned(breaks[1], 19, 13, 128, 128, 128);
+	draw_right_aligned(breaks[1], 29, 13, 128, 128, 128);
 	
 	
 	// Popluate reds on table
@@ -735,7 +735,7 @@ void ScoreboardController::populate_snooker_board()
 	// Populate points on table
 	int pointsOnTable = snookerGame->remaining_points();
 	
-	draw_right_aligned(pointsOnTable, 16, 23, 128, 128, 128);
+	draw_right_aligned(pointsOnTable, 29, 23, 128, 128, 128);
 }
 
 
@@ -749,13 +749,13 @@ void ScoreboardController::populate_english_billiards_board()
 	int points[2];
 	englishBilliardsGame->get_player_scores(points);
 	draw_left_aligned(points[0], 1, 3, 128, 128, 128);
-	draw_right_aligned(points[1], 19, 3, 128, 128, 128);
+	draw_right_aligned(points[1], 29, 3, 128, 128, 128);
 
 	// Populate player breaks
 	int breaks[2];
 	englishBilliardsGame->get_player_breaks(breaks);
 	draw_left_aligned(breaks[0], 1, 13, 128, 128, 128);
-	draw_right_aligned(breaks[1], 19, 13, 128, 128, 128);
+	draw_right_aligned(breaks[1], 29, 13, 128, 128, 128);
 
 	int time[3];
 	englishBilliardsGame->get_game_time(time);
@@ -786,17 +786,30 @@ void ScoreboardController::populate_english_billiards_board()
  * Draws a value left aligned.
  */
 void ScoreboardController::draw_left_aligned(int value, int x, int y, int r, int g, int b)
-{	
+{
+	int hundreds = (value / 100) % 10;
+	int tens     = (value /  10) % 10;
+
 	// Draw hundreds place if present
-	if((value/100)%10 != 0){
+	if( hundreds != 0){
 		draw_number(1, x, y, r, g, b);
-		x += 3;
+
+		if(hundreds == 1){
+			x += 3;
+		} else {
+			x += 5;
+		}
 	}
 	
 	// Draw tens place if present
-	if((value/10)%10 != 0 || x == 4){
-		draw_number((value/10)%10, x, y, r, g, b);
-		x += 5;
+	if(tens != 0){
+		draw_number(tens, x, y, r, g, b);
+
+		if(tens == 1){
+			x += 3;
+		} else {
+			x += 5;
+		}
 	}
 	
 	// Draw ones place
@@ -808,19 +821,35 @@ void ScoreboardController::draw_left_aligned(int value, int x, int y, int r, int
  * Draws a value right aligned.
  */
 void ScoreboardController::draw_right_aligned(int value, int x, int y, int r, int g, int b)
-{	
-	// Draw hundreds place if present
-	if((value/100)%10 != 0){
-		draw_number(1, x, y, r, g, b);
+{
+	int hundreds = (value / 100) % 10;
+	int tens     = (value /  10) % 10;
+	int ones     =  value        % 10;
+
+	if(ones == 1){
+		x -= 3;
+	} else {
+		x -= 5;
 	}
-	
-	// Draw tens place if present
-	if((value/10)%10 != 0 || (value/100)%10 != 0){
-		draw_number((value/10)%10, x+3, y, r, g, b);
-	}
-	
+
 	// Draw ones place
-	draw_number(value%10, x+8, y, r, g, b);
+	draw_number(ones, x, y, r, g, b);
+
+	if(tens == 1){
+		x -= 3;
+	} else {
+		x -= 5;
+	}
+
+	draw_number(tens, x, y, r, g, b);
+
+	if(hundreds == 1){
+		x -= 3;
+	} else {
+		x -= 5;
+	}
+
+	draw_number(hundreds, x, y, r, g, b);
 }
 
 
