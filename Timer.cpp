@@ -13,13 +13,13 @@ Timer::Timer()
 
 Timer::~Timer()
 {
-	timer_running = false;
+	timerRunning = false;
 }
 
 
 void Timer::start_timer()
 {
-	timer_running = true;
+	timerRunning = true;
 	std::thread timer(&Timer::timer_loop, this);
 	timer.detach();
 }
@@ -27,7 +27,7 @@ void Timer::start_timer()
 
 void Timer::stop_timer()
 {
-	timer_running = false;
+	timerRunning = false;
 }
 
 
@@ -49,7 +49,7 @@ void Timer::get_time(int *time)
 
 bool Timer::get_timer_running()
 {
-	return timer_running;
+	return timerRunning;
 }
 
 
