@@ -55,7 +55,7 @@ void ScoreboardController::Run()
 	}
 	
 	if(gameState == 2){
-		englishBilliardsGame.stop_game();
+		englishBilliardsGame->stop_game();
 	}
 }
 
@@ -670,7 +670,7 @@ void ScoreboardController::update_board()
 			if(englishBilliardsGame->player_fouled()){
 				draw_foul_indicator(player);
 			} else {
-				player_shooting(player, true));
+				player_shooting(player, true);
 			}
 			
 			break;
