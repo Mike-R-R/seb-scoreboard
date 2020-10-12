@@ -515,7 +515,7 @@ void ScoreboardController::player_shooting(int player, bool onRed)
 	if(player == 1){
 		draw_shooting_indicator(0, onRed);
 	} else {
-		draw_shooting_indicator(18, onRed);
+		draw_shooting_indicator(16, onRed);
 	}
 }
 
@@ -802,7 +802,7 @@ void ScoreboardController::draw_left_aligned(int value, int x, int y, int r, int
 	}
 	
 	// Draw tens place if present
-	if(tens != 0){
+	if(tens != 0 || hundreds != 0){
 		draw_number(tens, x, y, r, g, b);
 
 		if(tens == 1){
@@ -836,7 +836,7 @@ void ScoreboardController::draw_right_aligned(int value, int x, int y, int r, in
 	draw_number(ones, x, y, r, g, b);
 
 	// Calculate tens spacing and draw if present
-	if(tens != 0){
+	if(tens != 0 || hundreds != 0){
 		if(tens == 1){
 			x -= 3;
 		} else {
