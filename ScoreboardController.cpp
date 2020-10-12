@@ -184,6 +184,7 @@ void ScoreboardController::english_billiards_input(int key)
 		case 46:
 			// Handle '.' key press
 			gameState = 0;
+			englishBilliardsGame.stop_timer();
 			delete englishBilliardsGame;
 			break;
 		case 47:
@@ -525,7 +526,11 @@ void ScoreboardController::player_shooting(int player, bool onRed)
 	if(player == 1){
 		draw_shooting_indicator(0, onRed);
 	} else {
-		draw_shooting_indicator(16, onRed);
+		if(gameState == 1){
+			draw_shooting_indicator(18, onRed);
+		} else {
+			draw_shooting_indicator(16, onRed);
+		}
 	}
 }
 
