@@ -21,6 +21,7 @@ class EnglishBilliardsGame {
 		int shooting_player();
 		void revert_game_state();
 		void get_game_time(int *);
+		void stop_game();
 		
 	private:
 		Player* player1;
