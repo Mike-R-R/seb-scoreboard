@@ -1,7 +1,9 @@
 
 #include "Timer.h"
 
-
+/*
+ * Default timer constructor.
+ */
 Timer::Timer()
 {
 	timerRunning = false;
@@ -11,12 +13,18 @@ Timer::Timer()
 }
 
 
+/*
+ * Default timer destructor.
+ */
 Timer::~Timer()
 {
 	timerRunning = false;
 }
 
 
+/*
+ * Creates and detaches a new timer thread.
+ */
 void Timer::start_timer()
 {
 	timerRunning = true;
@@ -25,12 +33,19 @@ void Timer::start_timer()
 }
 
 
+/*
+ * Sets the atomic boolean variable to false to indicate
+ *  to the detached thread that is should stop running.
+ */
 void Timer::stop_timer()
 {
 	timerRunning = false;
 }
 
 
+/*
+ * Resets timer to default state.
+ */
 void Timer::reset_timer()
 {
 	hours = 0;
@@ -39,6 +54,9 @@ void Timer::reset_timer()
 }
 
 
+/*
+ * Returns the current timer time in an array.
+ */
 void Timer::get_time(int *time)
 {
 	*time = hours;
@@ -47,12 +65,20 @@ void Timer::get_time(int *time)
 }
 
 
+/*
+ * Return the current status of the atomic bool indicating
+ *  if the detached thread is currently running.
+ */
 bool Timer::get_timer_running()
 {
 	return timerRunning;
 }
 
 
+/*
+ * This function is run in a detached thread which continues
+ *  counting until the atomic bool timerRunning is set to false.
+ */
 void Timer::timer_loop(){
     while(timerRunning){
 
