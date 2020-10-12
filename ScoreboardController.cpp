@@ -184,7 +184,7 @@ void ScoreboardController::english_billiards_input(int key)
 		case 46:
 			// Handle '.' key press
 			gameState = 0;
-			englishBilliardsGame.stop_timer();
+			englishBilliardsGame->stop_timer();
 			delete englishBilliardsGame;
 			break;
 		case 47:
