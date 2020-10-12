@@ -53,6 +53,7 @@ void EnglishBilliardsGame::get_player_breaks(int* breaks)
  */
 void EnglishBilliardsGame::receive_point_input(int points)
 {
+	game_state_changed();
 	Player* playerAtTable = player_at_table();
 	playerAtTable->ball_potted(points);
 }
@@ -131,12 +132,9 @@ void EnglishBilliardsGame::end_break()
  */
 int EnglishBilliardsGame::shooting_player()
 {
-    if(player1->get_at_table())
-    {
+    if(player1->get_at_table()){
         return 1;
-    }
-    else
-    {
+    } else {
         return 2;
     }
 }
@@ -148,7 +146,7 @@ int EnglishBilliardsGame::shooting_player()
 Player* EnglishBilliardsGame::player_at_table()
 {
     if(player1->get_at_table()){
-	return player1;
+		return player1;
     } else {
         return player2;
     }
