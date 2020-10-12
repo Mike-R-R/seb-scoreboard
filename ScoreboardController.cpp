@@ -596,9 +596,9 @@ void ScoreboardController::draw_shooting_indicator(int x, bool onRed)
 		}
 	} else {
 		DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
-		DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
-		DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(100, 0, 0));
-		DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(100, 0, 0));
+		DrawLine(canvas(), x+15, y, x+15, y+2, rgb_matrix::Color(100, 0, 0));
+		DrawLine(canvas(), x+1, y, x+14, y, rgb_matrix::Color(100, 0, 0));
+		DrawLine(canvas(), x+1, y+1, x+14, y+1, rgb_matrix::Color(100, 0, 0));
 	}
 }
 
