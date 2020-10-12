@@ -4,6 +4,7 @@
 
 Timer::Timer()
 {
+	timerRunning = false;
 	hours = 0;
 	minutes = 0;
 	seconds = 0;

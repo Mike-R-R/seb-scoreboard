@@ -20,7 +20,7 @@ class Timer{
 		bool get_timer_running();
 
 	private:
-		volatile std::atomic<bool> timerRunning(false);
+		volatile std::atomic<bool> timerRunning;
 		int hours;
 		int minutes;
 		int seconds;
