@@ -426,11 +426,6 @@ void ScoreboardController::draw_english_billiards_scoreboard()
     DrawLine(canvas(), 0, 31, 31, 31, rgb_matrix::Color(128, 0, 0));
     DrawLine(canvas(), 31, 21, 31, 31, rgb_matrix::Color(128, 0, 0));
 
-    // Draw points and break
-    draw_left_aligned(300, 1, 3, 128, 128, 128);                                                                                                         draw_left_aligned(300, 1, 13, 128, 128, 128);
-    draw_right_aligned(300, 17, 3, 128, 128, 128);
-    draw_right_aligned(300, 17, 13, 128, 128, 128);
-
     // Point and break separator
     DrawLine(canvas(), 2, 11, 29, 11, rgb_matrix::Color(128, 0, 0));
 }
@@ -750,6 +745,18 @@ void ScoreboardController::populate_snooker_board()
  */
 void ScoreboardController::populate_english_billiards_board()
 {
+	// Populate player points
+	int points[2];
+	englishBilliardsGame->get_player_scores(points);
+	draw_left_aligned(points[0], 1, 3, 128, 128, 128);
+	draw_right_aligned(points[1], 19, 3, 128, 128, 128);
+
+	// Populate player breaks
+	int breaks[2];
+	englishBilliardsGame->get_player_breaks(breaks);
+	draw_left_aligned(breaks[0], 1, 13, 128, 128, 128);
+	draw_right_aligned(breaks[1], 19, 13, 128, 128, 128);
+
 	int time[3];
 	englishBilliardsGame->get_game_time(time);
 	
