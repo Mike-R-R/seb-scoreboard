@@ -19,7 +19,7 @@ class Timer{
 		bool get_timer_running();
 
 	private:
-		bool timer_running;
+		static bool timer_running;
 		int hours;
 		int minutes;
 		int seconds;
