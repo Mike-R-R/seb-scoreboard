@@ -53,6 +53,10 @@ void ScoreboardController::Run()
 		usleep(50000);
 		update_board();
 	}
+	
+	if(gameState == 2){
+		englishBilliardsGame.stop_game();
+	}
 }
 
 
@@ -661,6 +665,8 @@ void ScoreboardController::update_board()
 			draw_english_billiards_scoreboard();
 			populate_english_billiards_board();
 			
+			int player = englishBilliardsGame->shooting_player();
+			
 			if(englishBilliardsGame->player_fouled()){
 				draw_foul_indicator(player);
 			} else {
@@ -744,26 +750,29 @@ void ScoreboardController::populate_snooker_board()
  */
 void ScoreboardController::populate_english_billiards_board()
 {
+	int time[3];
+	englishBilliardsGame->get_game_time(time);
+	
 	// Populate hours
-    draw_number(hours, 2, 23, 150, 150, 150);
+    draw_number(time[0], 2, 23, 150, 150, 150);
 	
 	// Populate minutes
-	if(minutes > 9){
-        draw_number((minutes/10)%10, 9, 23, 150, 150, 150);
+	if(time[1] > 9){
+        draw_number((time[1]/10)%10, 9, 23, 150, 150, 150);
     } else {
 		draw_number(0, 9, 23, 150, 150, 150);
     }
 
-    draw_number(minutes%10, 14, 23, 150, 150, 150);
+    draw_number(time[1]%10, 14, 23, 150, 150, 150);
 
 	// Populate seconds
-    if(seconds > 9){
-        draw_number((seconds/10)%10, 21, 23, 150, 150, 150);
+    if(time[2] > 9){
+        draw_number((time[2]/10)%10, 21, 23, 150, 150, 150);
     } else {
         draw_number(0, 21, 23, 150, 150, 150);
     }
 
-    draw_number(seconds%10, 26, 23, 150, 150, 150);
+    draw_number(time[2]%10, 26, 23, 150, 150, 150);
 }
 
 /**

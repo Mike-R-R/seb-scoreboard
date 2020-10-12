@@ -4,12 +4,7 @@
 
 #include "Player.h"
 #include "SnookerStack.h"
-
-struct Timer{
-	int hours;
-	int minutes;
-	int seconds;
-};
+#include "Timer.h"
 
 class EnglishBilliardsGame {
 	public:
@@ -25,12 +20,12 @@ class EnglishBilliardsGame {
 		void end_break();
 		int shooting_player();
 		void revert_game_state();
+		void get_game_time(int *);
 		
 	private:
 		Player* player1;
 		Player* player2;
 		bool foul;
-		bool timerRunning;
 		Timer frameTimer;
 		SnookerStack stateStack;
 

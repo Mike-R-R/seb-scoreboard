@@ -54,11 +54,7 @@ bool Timer::get_timer_running()
 
 
 void Timer::timer_loop(){
-	//std::clock_t start = std::clock();
-	
     while(timer_running){
-		//std::cout << "Seconds: " << (std::clock() - start) << std::endl;
-		//seconds = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
 
 		if(seconds >= 60){
 			seconds = 0;
@@ -77,11 +73,7 @@ void Timer::timer_loop(){
 			seconds = 0;
 		}
 
-		//std::cout << "Current thread time is " << hours << ":" << minutes << ":" << seconds << std::endl;
-		//usleep(100000);
 		sleep(1);
 		seconds += 1;
 	}
-
-	std::cout << "Timer stopped! Exiting detached thread!" << std::endl;
 }

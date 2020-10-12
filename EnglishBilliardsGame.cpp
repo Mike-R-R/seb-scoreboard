@@ -1,19 +1,26 @@
 
 #include "EnglishBilliardsGame.h"
 
-EnglishBilliardsGame::EnglishBilliardsGame(){
-	frameTimer.hours = 0;
-	frameTimer.minutes = 0;
-	frameTimer.seconds = 0;
-	timerRunning = true;
+
+/*
+ * Default English Billiards Game constructor.
+ */
+EnglishBilliardsGame::EnglishBilliardsGame()
+{
 	foul = false;
 	player1 = new Player(true);
     player2 = new Player(false);
+	frameTimer.start_timer();
+	
 }
 
 
-EnglishBilliardsGame::~EnglishBilliardsGame(){
-	
+/*
+ * Default English Billiards Game destructor.
+ */
+EnglishBilliardsGame::~EnglishBilliardsGame()
+{
+
 }
 
 
@@ -226,6 +233,23 @@ void EnglishBilliardsGame::revert_game_state()
 	}
 	
 	foul = revertState->foul;
-    }
-    
+    }   
+}
+
+
+/*
+ * Returns the current frame timer.
+ */
+void EnglishBilliardsGame::et_game_time(int *time)
+{
+	frameTimer.get_time(time);
+}
+
+
+/*
+ * Stop the game and cleanup resources.
+ */
+void EnglishBilliardsGame::stop_game()
+{
+	frameTimer.stop_timer();
 }
