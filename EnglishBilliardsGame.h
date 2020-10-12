@@ -26,7 +26,6 @@ class EnglishBilliardsGame {
 	private:
 		Player* player1;
 		Player* player2;
-		bool foul;
 		Timer frameTimer;
 		SnookerStack stateStack;
 

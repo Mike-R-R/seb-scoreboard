@@ -677,11 +677,7 @@ void ScoreboardController::update_board()
 			
 			int player = englishBilliardsGame->shooting_player();
 			
-			if(englishBilliardsGame->player_fouled()){
-				draw_foul_indicator(player);
-			} else {
-				player_shooting(player, true);
-			}
+			player_shooting(player, true);
 			
 			break;
 	}

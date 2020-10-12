@@ -7,7 +7,6 @@
  */
 EnglishBilliardsGame::EnglishBilliardsGame()
 {
-	foul = false;
 	player1 = new Player(true);
     player2 = new Player(false);
 	frameTimer.start_timer();
@@ -60,21 +59,12 @@ void EnglishBilliardsGame::receive_point_input(int points)
 
 
 /*
- * Gets the foul status of the shooting player
- */
-bool EnglishBilliardsGame::player_fouled()
-{
-    return foul;
-}
-
-
-/*
  * Indicates that the player at the table has fouled.
  */
 void EnglishBilliardsGame::foul_occurred()
 {
 	game_state_changed();
-	foul = true;
+	add_foul_points(2);
 }
 
 
@@ -88,7 +78,6 @@ void EnglishBilliardsGame::add_foul_points(int points)
 	
 	playerNotAtTable->add_points(points);
 	end_break();
-	foul = false;
 }
 
 
@@ -115,7 +104,6 @@ void EnglishBilliardsGame::end_frame()
     }
     
 	frameTimer.reset_timer();
-	foul = false;
 	player1->set_at_table(true);
 	player2->set_at_table(false);
 }
@@ -130,9 +118,7 @@ void EnglishBilliardsGame::end_break()
 	Player* playerAtTable = player_at_table();
 	Player* playerNotAtTable = player_not_at_table();
 	
-	if(!foul){
-	    game_state_changed();
-	}
+	game_state_changed();
 	
 	playerAtTable->end_break();
 	playerNotAtTable->begin_break();
@@ -198,7 +184,6 @@ void EnglishBilliardsGame::game_state_changed()
     currentState.p1FramesWon = player1->get_frames_won();
     currentState.p2FramesWon = player2->get_frames_won();
     currentState.shootingPlayer = shooting_player();
-    currentState.foul = foul;
 
     stateStack.add_game_state(currentState);
 }
@@ -212,25 +197,23 @@ void EnglishBilliardsGame::revert_game_state()
     GameState* revertState = stateStack.previous_game_state();
     
     if(revertState != 0){
-	player1->set_score(revertState->p1Points);
-	player2->set_score(revertState->p2Points);
-	player1->set_current_break(revertState->p1CurrentBreak);
-	player2->set_current_break(revertState->p2CurrentBreak);
-	player1->set_high_break(revertState->p1HighBreak);
-	player2->set_high_break(revertState->p2HighBreak);
-	player1->set_frames_won(revertState->p1FramesWon);
-	player2->set_frames_won(revertState->p2FramesWon);
+		player1->set_score(revertState->p1Points);
+		player2->set_score(revertState->p2Points);
+		player1->set_current_break(revertState->p1CurrentBreak);
+		player2->set_current_break(revertState->p2CurrentBreak);
+		player1->set_high_break(revertState->p1HighBreak);
+		player2->set_high_break(revertState->p2HighBreak);
+		player1->set_frames_won(revertState->p1FramesWon);
+		player2->set_frames_won(revertState->p2FramesWon);
 	
-	if(revertState->shootingPlayer == 1){
-	    player1->set_at_table(true);
-	    player2->set_at_table(false);
-	} else {
-	    player2->set_at_table(true);
-	    player1->set_at_table(false);
-	}
-	
-	foul = revertState->foul;
-    }   
+		if(revertState->shootingPlayer == 1){
+			player1->set_at_table(true);
+			player2->set_at_table(false);
+		} else {
+			player2->set_at_table(true);
+			player1->set_at_table(false);
+		}
+    }
 }
 
 

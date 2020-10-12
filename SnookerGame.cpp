@@ -111,88 +111,88 @@ void SnookerGame::receive_point_input(int points)
     bool color_shot_valid = false;
     
     if(freeBall){
-	if(points > 1){
-	    game_state_changed();
-	    playerAtTable->ball_potted(points);
-	    playerAtTable->set_on_red(true);
-	    freeBall = false;
-	}
+		if(points > 1){
+			game_state_changed();
+			playerAtTable->ball_potted(points);
+			playerAtTable->set_on_red(true);
+			freeBall = false;
+		}
     } else if(foul){
-	game_state_changed();
-	if(points < 4){
-	    add_foul_points(4);
-	} else {
-	    add_foul_points(points);
-	}
-    } else {
-	// Check if red ball potted
-	if(points == 1){
-	    if(reds > 0){
 		game_state_changed();
-		playerAtTable->ball_potted(points);
-		
-		// Adjust score and target ball when multiple reds potted together
-		if(playerAtTable->get_on_red()){
-		    pointsOnTable -= 7;
-		    playerAtTable->set_on_red(false);
-		}
-		
-		reds--;
-		pointsOnTable -= 1;
-	    }
-	} else {
-	    //Check if color ball potted
-	    switch(points){
-		    case 2:
-			    if(pointsOnTable == 27){
-				    color_shot_valid = true;
-			    }
-			    break;
-		    case 3:
-			    if(pointsOnTable == 25){
-				    color_shot_valid = true;
-			    }
-			    break;
-		    case 4:
-			    if(pointsOnTable == 22){
-				    color_shot_valid = true;
-			    }
-			    break;
-		    case 5:
-			    if(pointsOnTable == 18){
-				    color_shot_valid = true;
-			    }
-			    break;
-		    case 6:
-			    if(pointsOnTable == 13){
-				    color_shot_valid = true;
-			    }
-			    break;
-		    case 7:
-			    if(pointsOnTable == 7){
-				    color_shot_valid = true;
-			    }
-			    break;
-	    }
-	    
-	    // Player is shooting color after potting a red
-	    if(!playerAtTable->get_on_red() && pointsOnTable > 27){
-		color_shot_valid = true;
-	    }
-	    
-	    if (color_shot_valid){
-		game_state_changed();
-		playerAtTable->ball_potted(points);
-		
-		// Set points on table and onRed value when only colors remain on the table.
-		if(pointsOnTable <= 27){
-		    playerAtTable->set_on_red(false);
-		    pointsOnTable -= points;
+		if(points < 4){
+			add_foul_points(4);
 		} else {
-		    pointsOnTable -= 7;
+			add_foul_points(points);
 		}
-	    }
-	}
+    } else {
+		// Check if red ball potted
+		if(points == 1){
+			if(reds > 0){
+				game_state_changed();
+				playerAtTable->ball_potted(points);
+
+				// Adjust score and target ball when multiple reds potted together
+				if(playerAtTable->get_on_red()){
+					pointsOnTable -= 7;
+					playerAtTable->set_on_red(false);
+				}
+		
+				reds--;
+				pointsOnTable -= 1;
+			}
+		} else {
+			//Check if color ball potted
+			switch(points){
+				case 2:
+					if(pointsOnTable == 27){
+						color_shot_valid = true;
+					}
+					break;
+				case 3:
+					if(pointsOnTable == 25){
+						color_shot_valid = true;
+					}
+					break;
+				case 4:
+					if(pointsOnTable == 22){
+						color_shot_valid = true;
+					}
+					break;
+				case 5:
+					if(pointsOnTable == 18){
+						color_shot_valid = true;
+					}
+					break;
+				case 6:
+					if(pointsOnTable == 13){
+						color_shot_valid = true;
+					}
+					break;
+				case 7:
+					if(pointsOnTable == 7){
+						color_shot_valid = true;
+					}
+					break;
+			}
+	    
+			// Player is shooting color after potting a red
+			if(!playerAtTable->get_on_red() && pointsOnTable > 27){
+				color_shot_valid = true;
+			}
+	    
+			if (color_shot_valid){
+				game_state_changed();
+				playerAtTable->ball_potted(points);
+		
+				// Set points on table and onRed value when only colors remain on the table.
+				if(pointsOnTable <= 27){
+					playerAtTable->set_on_red(false);
+					pointsOnTable -= points;
+				} else {
+					pointsOnTable -= 7;
+				}
+			}
+		}
     }
 }
 
