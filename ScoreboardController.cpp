@@ -792,7 +792,7 @@ void ScoreboardController::draw_left_aligned(int value, int x, int y, int r, int
 
 	// Draw hundreds place if present
 	if( hundreds != 0){
-		draw_number(1, x, y, r, g, b);
+		draw_number(hundreds, x, y, r, g, b);
 
 		if(hundreds == 1){
 			x += 3;
@@ -827,29 +827,33 @@ void ScoreboardController::draw_right_aligned(int value, int x, int y, int r, in
 	int ones     =  value        % 10;
 
 	if(ones == 1){
-		x -= 3;
+		x -= 1;
 	} else {
-		x -= 5;
+		x -= 3;
 	}
 
 	// Draw ones place
 	draw_number(ones, x, y, r, g, b);
 
-	if(tens == 1){
-		x -= 3;
-	} else {
-		x -= 5;
+	// Calculate tens spacing and draw if present
+	if(tens != 0){
+		if(tens == 1){
+			x -= 3;
+		} else {
+			x -= 5;
+		}
+		draw_number(tens, x, y, r, g, b);
 	}
 
-	draw_number(tens, x, y, r, g, b);
-
-	if(hundreds == 1){
-		x -= 3;
-	} else {
-		x -= 5;
+	// Calculate hundreds spacing and draw if present
+	if(hundreds != 0){
+		if(hundreds == 1){
+			x -= 3;
+		} else {
+			x -= 5;
+		}
+		draw_number(hundreds, x, y, r, g, b);
 	}
-
-	draw_number(hundreds, x, y, r, g, b);
 }
 
 
