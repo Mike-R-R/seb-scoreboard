@@ -7,6 +7,7 @@
 #include <cstdio>
 #include <ctime>
 #include <unistd.h>
+#include <atomic>
 
 class Timer{
 	public:
@@ -19,7 +20,7 @@ class Timer{
 		bool get_timer_running();
 
 	private:
-		static bool timer_running;
+		volatile std::atomic<bool> timerRunning(false);
 		int hours;
 		int minutes;
 		int seconds;

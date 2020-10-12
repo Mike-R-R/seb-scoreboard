@@ -4,7 +4,6 @@
 
 Timer::Timer()
 {
-	timer_running = false;
 	hours = 0;
 	minutes = 0;
 	seconds = 0;
@@ -54,11 +53,10 @@ bool Timer::get_timer_running()
 
 
 void Timer::timer_loop(){
-    while(timer_running){
+    while(timerRunning){
 
 		if(seconds >= 60){
 			seconds = 0;
-			//start = std::clock();
 			minutes = minutes + 1;
 		}
 
