@@ -298,14 +298,14 @@ void ScoreboardController::draw_game_selection_screen()
 	canvas()->SetPixel( 9, 14, 255, 0, 0);
 	canvas()->SetPixel( 8, 15, 255, 0, 0);
 	
-	DrawLine(canvas(), 20, 13, 23, 13, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 19, 14, 23, 14, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 19, 15, 20, 15, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 19, 16, 21, 16, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 20, 17, 23, 17, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 22, 18, 23, 18, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 19, 19, 23, 19, rgb_matrix::Color(255, 0, 0));
-	DrawLine(canvas(), 19, 20, 22, 20, rgb_matrix::Color(255, 0, 0));
+	DrawLine(canvas(), 20, 13, 23, 13, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 19, 14, 23, 14, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 19, 15, 20, 15, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 19, 16, 21, 16, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 20, 17, 23, 17, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 22, 18, 23, 18, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 19, 19, 23, 19, rgb_matrix::Color(0, 0, 100));
+	DrawLine(canvas(), 19, 20, 22, 20, rgb_matrix::Color(0, 0, 100));
 	
 	// Draw "2 = E.B."
 	DrawLine(canvas(), 9, 24, 12, 24, rgb_matrix::Color(100, 100, 100));
@@ -347,7 +347,7 @@ void ScoreboardController::draw_game_selection_screen()
 
 
 /**
- * Draw the snooker scoreboard elements
+ * Draw the static snooker scoreboard elements
  */
 void ScoreboardController::draw_snooker_scoreboard()
 {	
@@ -402,6 +402,34 @@ void ScoreboardController::draw_snooker_scoreboard()
 	DrawLine(canvas(), 28, 31, 30, 31, rgb_matrix::Color(32, 32, 32));
 }
 
+
+/**
+ * Draw the static English Billiards scoreboard elements
+ */
+void ScoreboardController::draw_english_billiards_scoreboard()
+{
+    clear_board();
+
+    // Timer dots
+    canvas()->SetPixel(7, 24, 255, 0, 0);
+    canvas()->SetPixel(7, 28, 255, 0, 0);
+    canvas()->SetPixel(19, 24, 255, 0, 0);
+    canvas()->SetPixel(19, 28, 255, 0, 0);
+
+    // Timer frame
+    DrawLine(canvas(), 0, 21, 31, 21, rgb_matrix::Color(128, 0, 0));
+    DrawLine(canvas(), 0, 21, 0, 31, rgb_matrix::Color(128, 0, 0));
+    DrawLine(canvas(), 0, 31, 31, 31, rgb_matrix::Color(128, 0, 0));
+    DrawLine(canvas(), 31, 21, 31, 31, rgb_matrix::Color(128, 0, 0));
+
+    // Draw points and break
+    draw_left_aligned(300, 1, 3, 128, 128, 128);                                                                                                         draw_left_aligned(300, 1, 13, 128, 128, 128);
+    draw_right_aligned(300, 17, 3, 128, 128, 128);
+    draw_right_aligned(300, 17, 13, 128, 128, 128);
+
+    // Point and break separator
+    DrawLine(canvas(), 2, 11, 29, 11, rgb_matrix::Color(128, 0, 0));
+}
 
 /**
  * Draws a number on the scoreboard at the x and y coordinates
@@ -500,70 +528,78 @@ void ScoreboardController::player_shooting(int player, bool onRed)
 void ScoreboardController::draw_shooting_indicator(int x, bool onRed)
 {
 	int y = 0;
-	int remainingPoints = snookerGame->remaining_points();
 	
-	// Handle the special cases for drawing the shooting indicator and
-	//  default to typical drawing behavior
-	switch(remainingPoints){
-		case 27:
-			DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
-			DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
-			DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(170, 170, 0));
-			DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(170, 170, 0));
-			break;
-		case 25:
-			DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
-			DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
-			DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(0, 170, 0));
-			DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(0, 170, 0));
-			break;
-		case 22:
-			DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
-			DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
-			DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(102, 51, 0));
-			DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(102, 51, 0));
-			break;
-		case 18:
-			DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
-			DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
-			DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(0, 0, 170));
-			DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(0, 0, 170));
-			break;
-		case 13:
-			DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
-			DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
-			DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(255, 0, 127));
-			DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(255, 0, 127));
-			break;
-		case 7:
-			DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
-			DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
-			DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(32, 32, 32));
-			DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(32, 32, 32));
-			break;
-		default:
-			if(!onRed){
+	if(gameState == 1){
+		int remainingPoints = snookerGame->remaining_points();
+		
+		// Handle the special cases for drawing the shooting indicator and
+		//  default to typical drawing behavior
+		switch(remainingPoints){
+			case 27:
 				DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
 				DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
-				DrawLine(canvas(), x+1, y, x+1, y+1, rgb_matrix::Color(170, 170, 0));
-				DrawLine(canvas(), x+2, y, x+2, y+1, rgb_matrix::Color(170, 170, 0));
-				DrawLine(canvas(), x+3, y, x+3, y+1, rgb_matrix::Color(0, 170, 0));
-				DrawLine(canvas(), x+4, y, x+4, y+1, rgb_matrix::Color(0, 170, 0));
-				DrawLine(canvas(), x+5, y, x+5, y+1, rgb_matrix::Color(102, 51, 0));
-				DrawLine(canvas(), x+6, y, x+6, y+1, rgb_matrix::Color(102, 51, 0));
-				DrawLine(canvas(), x+7, y, x+7, y+1, rgb_matrix::Color(0, 0, 170));
-				DrawLine(canvas(), x+8, y, x+8, y+1, rgb_matrix::Color(0, 0, 170));
-				DrawLine(canvas(), x+9, y, x+9, y+1, rgb_matrix::Color(255, 0, 127));
-				DrawLine(canvas(), x+10, y, x+10, y+1, rgb_matrix::Color(255, 0, 127));
-				DrawLine(canvas(), x+11, y, x+11, y+1, rgb_matrix::Color(32, 32, 32));
-				DrawLine(canvas(), x+12, y, x+12, y+1, rgb_matrix::Color(32, 32, 32));
-			} else {
+				DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(170, 170, 0));
+				DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(170, 170, 0));
+				break;
+			case 25:
 				DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
 				DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
-				DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(100, 0, 0));
-				DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(100, 0, 0));
-			}
-			break;
+				DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(0, 170, 0));
+				DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(0, 170, 0));
+				break;
+			case 22:
+				DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
+				DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
+				DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(102, 51, 0));
+				DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(102, 51, 0));
+				break;
+			case 18:
+				DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
+				DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
+				DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(0, 0, 170));
+				DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(0, 0, 170));
+				break;
+			case 13:
+				DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
+				DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
+				DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(255, 0, 127));
+				DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(255, 0, 127));
+				break;
+			case 7:
+				DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
+				DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
+				DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(32, 32, 32));
+				DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(32, 32, 32));
+				break;
+			default:
+				if(!onRed){
+					DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
+					DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
+					DrawLine(canvas(), x+1, y, x+1, y+1, rgb_matrix::Color(170, 170, 0));
+					DrawLine(canvas(), x+2, y, x+2, y+1, rgb_matrix::Color(170, 170, 0));
+					DrawLine(canvas(), x+3, y, x+3, y+1, rgb_matrix::Color(0, 170, 0));
+					DrawLine(canvas(), x+4, y, x+4, y+1, rgb_matrix::Color(0, 170, 0));
+					DrawLine(canvas(), x+5, y, x+5, y+1, rgb_matrix::Color(102, 51, 0));
+					DrawLine(canvas(), x+6, y, x+6, y+1, rgb_matrix::Color(102, 51, 0));
+					DrawLine(canvas(), x+7, y, x+7, y+1, rgb_matrix::Color(0, 0, 170));
+					DrawLine(canvas(), x+8, y, x+8, y+1, rgb_matrix::Color(0, 0, 170));
+					DrawLine(canvas(), x+9, y, x+9, y+1, rgb_matrix::Color(255, 0, 127));
+					DrawLine(canvas(), x+10, y, x+10, y+1, rgb_matrix::Color(255, 0, 127));
+					DrawLine(canvas(), x+11, y, x+11, y+1, rgb_matrix::Color(32, 32, 32));
+					DrawLine(canvas(), x+12, y, x+12, y+1, rgb_matrix::Color(32, 32, 32));
+					} else {
+					DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
+					DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
+					DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(100, 0, 0));
+					DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(100, 0, 0));
+				}
+				break;
+		}
+	} else {
+		DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
+		DrawLine(canvas(), x+13, y, x+13, y+2, rgb_matrix::Color(100, 0, 0));
+		DrawLine(canvas(), x+1, y, x+12, y, rgb_matrix::Color(100, 0, 0));
+		DrawLine(canvas(), x+1, y+1, x+12, y+1, rgb_matrix::Color(100, 0, 0));
 	}
 }
 
@@ -605,6 +641,7 @@ void ScoreboardController::update_board()
 		case 0:
 			draw_game_selection_screen();
 			break;
+		// Update the board for Snooker game mode.
 		case 1:
 		{
 			draw_snooker_scoreboard();
@@ -619,7 +656,17 @@ void ScoreboardController::update_board()
 			}
 			break;
 		}
+		// Update the board for English Billiards game mode.
 		case 2:
+			draw_english_billiards_scoreboard();
+			populate_english_billiards_board();
+			
+			if(englishBilliardsGame->player_fouled()){
+				draw_foul_indicator(player);
+			} else {
+				player_shooting(player, true));
+			}
+			
 			break;
 	}
 }
@@ -637,8 +684,9 @@ void ScoreboardController::clear_board()
 
 
 /**
- * Populates the current points, break, reds, and points
- *  on table value spaces on the board.
+ * Populates the non-static parts of the snooker socreboard including
+ *  the points, break, reds, and points on table value spaces on the
+ *  board.
  */
 void ScoreboardController::populate_snooker_board()
 {	
@@ -689,6 +737,34 @@ void ScoreboardController::populate_snooker_board()
 	draw_right_aligned(pointsOnTable, 16, 23, 128, 128, 128);
 }
 
+
+/**
+ * Populates the non-static parts of the English Billiards socreboard
+ *  including the points, break, and timer spaces on the board.
+ */
+void ScoreboardController::populate_english_billiards_board()
+{
+	// Populate hours
+    draw_number(hours, 2, 23, 150, 150, 150);
+	
+	// Populate minutes
+	if(minutes > 9){
+        draw_number((minutes/10)%10, 9, 23, 150, 150, 150);
+    } else {
+		draw_number(0, 9, 23, 150, 150, 150);
+    }
+
+    draw_number(minutes%10, 14, 23, 150, 150, 150);
+
+	// Populate seconds
+    if(seconds > 9){
+        draw_number((seconds/10)%10, 21, 23, 150, 150, 150);
+    } else {
+        draw_number(0, 21, 23, 150, 150, 150);
+    }
+
+    draw_number(seconds%10, 26, 23, 150, 150, 150);
+}
 
 /**
  * Draws a value left aligned.

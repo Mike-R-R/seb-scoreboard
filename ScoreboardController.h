@@ -25,10 +25,11 @@ class ScoreboardController : public rgb_matrix::ThreadedCanvasManipulator{
 		SnookerGame* snookerGame;
 		EnglishBilliardsGame* englishBilliardsGame;
 		
-		/* Represents the current game state.
+		/** Represents the current game state.
 		  *  0 = Game selection
 		  *  1 = Snooker
-		  *  2 = English Billiards */
+		  *  2 = English Billiards
+		  */
 		int gameState;
 		
 		void game_selection_input(int);
@@ -36,6 +37,7 @@ class ScoreboardController : public rgb_matrix::ThreadedCanvasManipulator{
 		void english_billiards_input(int);
 		void draw_game_selection_screen();
 		void draw_snooker_scoreboard();
+		void draw_english_billiards_scoreboard();
 		void draw_number(int,int,int,int,int,int);
 		void player_shooting(int, bool);
 		void draw_shooting_indicator(int,bool);
@@ -43,6 +45,7 @@ class ScoreboardController : public rgb_matrix::ThreadedCanvasManipulator{
 		void update_board();
 		void clear_board();
 		void populate_snooker_board();
+		void populate_english_billiards_board();
 		void draw_left_aligned(int,int,int,int,int,int);
 		void draw_right_aligned(int,int,int,int,int,int);
 		void draw_left_inverted(int);
