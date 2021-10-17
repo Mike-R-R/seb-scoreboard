@@ -618,14 +618,14 @@ void ScoreboardController::draw_shooting_indicator(int x, bool onRed)
 				break;
 		}
 	} else {
-		int shootingPlayer = snookerGame->shooting_player();
+		int shooting = englishBilliardsGame->shooting_player();
 		
-		if(shootingPlayer == 1){
+		if(shooting == 1){
 			DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
 			DrawLine(canvas(), x+15, y, x+15, y+2, rgb_matrix::Color(100, 0, 0));
 			DrawLine(canvas(), x+1, y, x+14, y, rgb_matrix::Color(128, 128, 128));
 			DrawLine(canvas(), x+1, y+1, x+14, y+1, rgb_matrix::Color(128, 128, 128));
-		} else if(shootingPlayer == 2){
+		} else if(shooting  == 2){
 			DrawLine(canvas(), x, y, x, y+2, rgb_matrix::Color(100, 0, 0));
 			DrawLine(canvas(), x+15, y, x+15, y+2, rgb_matrix::Color(100, 0, 0));
 			DrawLine(canvas(), x+1, y, x+14, y, rgb_matrix::Color(170, 170, 0));
