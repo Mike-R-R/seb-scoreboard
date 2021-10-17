@@ -50,7 +50,7 @@ void ScoreboardController::Run()
 					break;
 			}
 		}
-		usleep(1);
+		usleep(90000);
 		update_board();
 	}
 	
