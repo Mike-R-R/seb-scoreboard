@@ -207,9 +207,17 @@ void ScoreboardController::english_billiards_input(int key)
 			// Handle '3' key press
 			englishBilliardsGame->receive_point_input(3);
 			break;
+		case 52:
+			// Handle '4' key press
+			englishBilliardsGame->receive_point_input(4);
+			break;
 		case 53:
 			// Handle '5' key press
 			englishBilliardsGame->receive_point_input(5);
+			break;
+		case 54:
+			// Handle '6' key press
+			englishBilliardsGame->receive_point_input(6);
 			break;
 		case 55:
 			// Handle '7' key press

@@ -15,6 +15,7 @@ SnookerGame::SnookerGame()
     foul = false;
 }
 
+
 /**
  * Constructor for a game of snooker where p1 and p2 are
  *  true if the player is breaking and false if not.
@@ -29,6 +30,7 @@ SnookerGame::SnookerGame(bool p1, bool p2)
     foul = false;
 }
 
+
 /**
  * Default destructor
  */
@@ -36,6 +38,7 @@ SnookerGame::~SnookerGame()
 {
 
 }
+
 
 /**
  * Copy assignment for a game of snooker
@@ -422,4 +425,3 @@ void SnookerGame::revert_game_state()
     }
     
 }
-
